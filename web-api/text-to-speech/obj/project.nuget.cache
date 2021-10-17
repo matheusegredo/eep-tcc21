@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VwWgG4v7fFY1bzL8lgwinacFE+e5Z4EKH42yiR20z9AqwW/NcMgydr/K4iWd3V3tmIHdivCO4pbTdatHjPjenQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\msegredo\\source\\repos\\text-to-speech\\web-api\\text-to-speech\\text-to-speech.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\msegredo\\.nuget\\packages\\microsoft.cognitiveservices.speech\\1.18.0\\microsoft.cognitiveservices.speech.1.18.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Text-to-Speech.Api", "Tcc.Text-to-Speech.Api\Tcc.Text-to-Speech.Api.csproj", "{51E2BC9D-5020-445F-998E-2645733AC41B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Text-to-Speech.Application", "Tcc.Text-to-Speech.Application\Tcc.Text-to-Speech.Application.csproj", "{CD754890-A6AD-4CC1-A835-CAB0A511BB1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51E2BC9D-5020-445F-998E-2645733AC41B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E2BC9D-5020-445F-998E-2645733AC41B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E2BC9D-5020-445F-998E-2645733AC41B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E2BC9D-5020-445F-998E-2645733AC41B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD754890-A6AD-4CC1-A835-CAB0A511BB1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD754890-A6AD-4CC1-A835-CAB0A511BB1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD754890-A6AD-4CC1-A835-CAB0A511BB1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD754890-A6AD-4CC1-A835-CAB0A511BB1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A490A580-65DF-443A-BE0C-30BE085380FC}
+	EndGlobalSection
+EndGlobal
