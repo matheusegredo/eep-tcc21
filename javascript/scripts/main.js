@@ -72,7 +72,7 @@ $(document).ready(function () {
 function TextToSpeechRequest(text) {
     $.ajax({
         method: "POST",
-        url: 'https://localhost:44377/api/v1/texttospeech', 
+        url: 'https://tcctext-to-speechapi20211017190820.azurewebsites.net/api/v1/texttospeech', 
         data: JSON.stringify({ "text": text, }),
         contentType: 'application/json',        
     }).done(function(result) {
