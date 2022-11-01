@@ -2,11 +2,11 @@
 {
 	public sealed class TextToSpeechCommandResponse
 	{
-		public TextToSpeechCommandResponse(string base64Fila)
+		public TextToSpeechCommandResponse(byte[] content)
 		{
-			Base64Fila = base64Fila;
+            Content = content;
 		}
 
-		public string Base64Fila { get; set; }		
+		public byte[] Content { get; set; }		
 	}
 }

@@ -1,18 +1,14 @@
+using LiteDB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Tcc.Text_to_Speech.Application;
 using Tcc.Text_to_Speech.Application.Commands;
 using Tcc.Text_to_Speech.Application.Interfaces;
+using Tcc.Text_to_Speech.Domain;
 
 namespace Tcc.Text_to_Speech.Api
 {
@@ -28,7 +24,19 @@ namespace Tcc.Text_to_Speech.Api
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddSingleton<ITextToSpeechHandler, TextToSpeechCommandHandler>();
+			services.AddSingleton<Cache>();
+			services.AddScoped<ITextToSpeechHandler, TextToSpeechCommandHandler>();
+
+			services.AddTransient<ILiteDatabase>
+			(
+				(config) => 
+				{ 
+					var db = new LiteDatabase(@"Filename=audio.db;Connection=Shared");
+					return db;
+				}
+			);
+
+			services.AddScoped<AudioRepository>();
 
 			services.AddControllers();
 			services.AddSwaggerGen(c =>

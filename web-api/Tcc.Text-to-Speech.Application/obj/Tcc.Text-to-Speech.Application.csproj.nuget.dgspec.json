@@ -1,35 +1,114 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\msegredo\\source\\repos\\text-to-speech\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj": {}
+    "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\msegredo\\source\\repos\\text-to-speech\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj": {
+    "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\msegredo\\source\\repos\\text-to-speech\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj",
+        "projectUniqueName": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj",
         "projectName": "Tcc.Text-to-Speech.Application",
-        "projectPath": "C:\\Users\\msegredo\\source\\repos\\text-to-speech\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj",
-        "packagesPath": "C:\\Users\\msegredo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\msegredo\\source\\repos\\text-to-speech\\web-api\\Tcc.Text-to-Speech.Application\\obj\\",
+        "projectPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Application\\Tcc.Text-to-Speech.Application.csproj",
+        "packagesPath": "C:\\Users\\mdels\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\msegredo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mdels\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/FABICash/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Domain\\Tcc.Text-to-Speech.Domain.csproj": {
+                "projectPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Domain\\Tcc.Text-to-Speech.Domain.csproj"
+              },
+              "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Infrastructure\\Tcc.Text-to-Speech.Infrastructure.csproj": {
+                "projectPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Infrastructure\\Tcc.Text-to-Speech.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.CognitiveServices.Speech": {
+              "target": "Package",
+              "version": "[1.23.0, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "System.Speech": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Domain\\Tcc.Text-to-Speech.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Domain\\Tcc.Text-to-Speech.Domain.csproj",
+        "projectName": "Tcc.Text-to-Speech.Domain",
+        "projectPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Domain\\Tcc.Text-to-Speech.Domain.csproj",
+        "packagesPath": "C:\\Users\\mdels\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mdels\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/FABICash/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -40,16 +119,12 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.CognitiveServices.Speech": {
+            "LiteDB": {
               "target": "Package",
-              "version": "[1.18.0, )"
-            },
-            "System.Speech": {
-              "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[5.0.12, )"
             }
           },
           "imports": [
@@ -58,7 +133,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -67,7 +143,63 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Infrastructure\\Tcc.Text-to-Speech.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Infrastructure\\Tcc.Text-to-Speech.Infrastructure.csproj",
+        "projectName": "Tcc.Text-to-Speech.Infrastructure",
+        "projectPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Infrastructure\\Tcc.Text-to-Speech.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\mdels\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mdels\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/FABICash/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
