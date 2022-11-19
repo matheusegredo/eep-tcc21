@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "emMQuT3Z/UdwvTvGqSj0blnbnmztInO+FuDoQNcFDYxsWLgUkexFeHGZ1l5gfPNJLHMwm1iVw2vuBQ121UYEng==",
+  "dgSpecHash": "7fqLAuEaf96Fg18oxNtCWlBx0w7RtgqwtNaXbQscJYQLun7iEmuMy0a+QyRM+hqfdLRh1z2PWU6+Yo7Py1L4rQ==",
   "success": true,
   "projectFilePath": "C:\\dev\\Pessoal\\eep-tcc21\\web-api\\Tcc.Text-to-Speech.Api\\Tcc.Text-to-Speech.Api.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\mdels\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\mdels\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\mdels\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\mdels\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
     "C:\\Users\\mdels\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\mdels\\.nuget\\packages\\naudio\\2.1.0\\naudio.2.1.0.nupkg.sha512",
     "C:\\Users\\mdels\\.nuget\\packages\\naudio.asio\\2.1.0\\naudio.asio.2.1.0.nupkg.sha512",

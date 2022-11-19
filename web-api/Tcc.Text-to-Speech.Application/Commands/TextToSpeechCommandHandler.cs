@@ -27,38 +27,15 @@ namespace Tcc.Text_to_Speech.Application.Commands
 		{
 			var config = SpeechConfig.FromSubscription("8e11fb332a75441ba71e18eda1e66cb2", "brazilsouth");
 
-			config.SpeechSynthesisLanguage = command.SpeechSynthesisLanguage;
-			config.SpeechSynthesisVoiceName = command.SpeechSynthesisVoiceName;
+			config.SpeechSynthesisLanguage = "pt-BR";
 
-			using var synthesizer = new SpeechSynthesizer(config, null);
+            config.SpeechSynthesisVoiceName = "Microsoft Server Speech Text to Speech Voice (pt-BR, AntonioNeural)";
 
-			var sentences = command.Text.Split(' ');
+            using var synthesizer = new SpeechSynthesizer(config, null);
 
-			var files = new List<byte[]>();            	
+            var result = await synthesizer.SpeakTextAsync(command.Text);
 
-            foreach (var sentence in sentences)
-			{
-                using var stream = new MemoryStream();
-                //var cachedData = FindCachedData(sentence);
-
-                //if (cachedData is not null)
-                //{
-                //	Console.WriteLine($"{sentence} retrived from cached data");
-                //  stream.Write(cachedData.Data);
-                //	continue;
-                //}
-
-                //Console.WriteLine($"Getting {sentence} from azure");
-                var result = await synthesizer.SpeakTextAsync(command.Text);
-
-				stream.Write(result.AudioData);
-				//InsertData(sentence, result.AudioData);
-				files.Add(stream.ToArray());
-            }
-
-			var wave = new Wave();
-
-			return new TextToSpeechCommandResponse(wave.Merge(files));
+			return new TextToSpeechCommandResponse(result.AudioData);
 		}
 
 		private Audio FindCachedData(string key)
