@@ -31,7 +31,7 @@ class SoundHandler {
         this.audio.addEventListener('ended', this.endedEventListener.bind(event, this, id));        
         console.log("Adicionando audio na fila");      
 
-        this.audioQueue.enqueue(this.audio);
+        this.audioQueue.enqueue({ "content": this.audio, "id": id });
 
         elements[id]['inQueue'] = true;
 
@@ -41,12 +41,12 @@ class SoundHandler {
     }
     endedEventListener(e, id) {
         let audio = e.audioQueue.dequeue()
-        e.documentFragment.removeChild(audio);
+        e.documentFragment.removeChild(audio.content);
         console.log("Removendo audio da fila");      
 
         elements[id]['inQueue'] = false;
         
-        e.handler();
+        e.handler(id);
     }
     handler() {
         console.log("Verificando próximos audios da fila");
@@ -54,22 +54,58 @@ class SoundHandler {
             return;
         }   
 
-        this.run();
+        let next = this.audioQueue.peek();
+
+        if (isValid(next.id)) {
+            console.log("Audio executado recentemente");
+            this.audioQueue.dequeue();
+            
+            this.handler();
+        } else {
+            this.run();
+        }
     }
     run() {
         console.log("Executando próximo audio da fila");
         var audio = this.audioQueue.peek();
-        audio.play();
+        audio.content.play();
     }
 }
 
 const soundHandler = new SoundHandler();
+const actionQueue = new Queue();
+
+const clickElements = [ 'h1', 'h2', 'h3', 'p', 'address', 'footer', 'section', 'li', 'hr', 'ol', 'ul', 'td', 'tr', 'span' ]
+const hoverElements = [ 'a', 'nav', 'button', 'img', 'span', 'input' ]
 
 $(document).ready(function () {
-    $(document).on('click', function (event) {
+    
+    clickElements.forEach(function (v) {
+        createClickAction(v);
+    }); 
+
+    hoverElements.forEach(function (v) {
+        createHoverAction(v);
+    });     
+});
+
+function createHoverAction(type) {
+    var hoverTimeout;
+
+    $(type).hover(function (event) {
+        hoverTimeout = setTimeout(function(event) {
+            handle(event.target);            
+        }, 1500, event);
+    }, function() {
+        clearTimeout(hoverTimeout);        
+    });
+}
+
+function createClickAction(type) {
+    $(type).on('click', function (event) {
         handle(event.target);
     });
-});
+}
 
 const elements = [];
 
@@ -80,25 +116,89 @@ const uniqId = (() => {
     }
 })();
 
-const actions = {
-    "button": function (target, information) {
-        if (information['isFirstClick']) {
-            target.preventDefault();
+const actions = {    
+    "img": function (target) {
+        let text = $(target).attr('alt');
 
-            information['isFirstClick'] = false;
+        if (!isValid(id, 10)) {
+            console.log('Audio executado a menos de 10seg atrás');
+            return;
+        }
 
-            updateInteraction(information);
-            
+        request(text, $(target).attr('p_id'));
+    },
+    "input": function (target) {
+
+        if (!isValid(id, 15)) {
+            console.log('Audio executado a menos de 15seg atrás');
+            return;
+        }
+
+        request($(target).val(), $(target).attr('p_id'));
+    },
+    "default": function (target) {
+
+        var id = $(target).attr('p_id');
+
+        if (!isValid(id)) {
+            console.log('Audio executado a menos de 60seg atrás');
+            return;
+        }
+
+        if ($(target).is(":parent")) {
+            actions['parent'](target);
+        } else {
             request($(target).text(), $(target).attr('p_id'));
         }
     },
-    "p": function (target, information) {
+    "parent": function (target) {
+        if ($(target).text() !== '') {
+            request($(target).text(), $(target).attr('p_id'));
+        }
+        else if ($(target).children('li').length > 0) {
+            $(target).find('li').each(function (i, li) {
+                handle(li);
+            })
+        }        
+        else {            
+            let text = '';
+            let t = target;
 
-        updateInteraction(information);
+            counter = 0;
 
-        request($(target).text(), $(target).attr('p_id'));
-    },
-    "h1": null
+            while (counter < 5) {                        
+                text = $(t).next().text();
+
+                if (text !== '') {
+                    break;
+                }
+
+                t = $(t).next();
+
+                counter++;
+            }
+
+            if (text !== '') {
+                handle(t);
+            }
+        }
+    }
+}
+
+function performAction(type, target) {
+    if (elements[$(target).attr('p_id')]['inQueue']) {        
+        console.log('audio já está na fila');        
+    }   
+    else if (actions[type]) {
+        actions[type](target);
+    }
+    else {
+        actions['default'](target);
+    }
+}
+
+function isValid(id, seconds = 60) {
+    return elements[id]['lastInteraction'].setSeconds(elements[id]['lastInteraction'].getSeconds() + seconds) > new Date($.now());
 }
 
 function handle(target) {
@@ -109,45 +209,50 @@ function handle(target) {
         $(target).attr('p_id', id);
 
         elements[id] = {
-            'isFirstClick': true,
-            'lastAudioRequest': new Date($.now()),
-            'inQueue': false
+            'inQueue': false,
+            'lastInteraction': new Date($.now())
         }
     }
+    else {
+        elements[id]['lastInteraction'] = new Date($.now())
+    }
 
-    actions[target.localName](target, elements[id]);
+    actionQueue.enqueue(performAction);    
+    handleQueue(target.localName, target);
 }
 
-function updateInteraction(information) {
-    information['lastAudioRequest'] = new Date($.now());
-}
+var queueIsRunning = false;
 
-function shouldRun(information, time) {
-    return new Date($.now() - time) > information['lastAudioRequest'];
+async function handleQueue(type, target) {
+    if (!queueIsRunning) {    
+        queueIsRunning = true;
+
+        var f = actionQueue.dequeue();
+
+        f(type, target);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        queueIsRunning = false;
+
+        if (!actionQueue.isEmpty()) {
+            handleQueue(type, target);
+        }
+    }
 }
 
 function request(text, id) {
 
-    if (elements[id]['inQueue']) {
-        if (shouldRun(elements[id], 5000)) {
-            elements[id]['inQueue'] = false;
-        }
-        else {
-            console.log('audio já está na fila');
-            return;
-        }
-    }
+    if (text === '') {
+        return;
+    }    
 
     $.ajax({
         method: "POST",
         url: 'https://eep-tcc-api-2022.azurewebsites.net/api/v1/texttospeech', 
         data: JSON.stringify({ "text": text, }),
-        contentType: 'application/json',        
+        contentType: 'application/json'        
     }).done(function(result) {
         soundHandler.add("data:audio/wav;base64," + result.content, id) 
     }).fail(function(jqXHR, textStatus, msg) {
         alert(msg);
     });
 }
-
-
